@@ -1,11 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Epilogue, } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/layout/Header";
+import localFont from 'next/font/local';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const epilogue = Epilogue({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-epilogue",
+});
+const clashDisplay = localFont({ 
+  variable: "--font-clash-display",
+  src: [
+    { path: "./fonts/clash-font/ClashDisplay-Semibold.otf", weight: "600", style: "normal" },
+  
+
+
+  ]
+})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -25,8 +42,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${epilogue.variable} ${clashDisplay.variable} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>
