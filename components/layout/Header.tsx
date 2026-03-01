@@ -21,7 +21,7 @@ const Header = () => {
             <div className='flex gap-4 items-center'>
                 <button className='px-6 py-3 rounded-sm text-[16px] text-brand capitalize font-epilogue font-bold cursor-pointer'>Login</button>
 
-                <div className='w-12 h-0 border border-[#D6DDEB] rotate-90'></div>
+                <div className='w-12 h-0 border border-[#D6DDEB] rotate-90'/>
 
 
                 <button className='px-6 py-3 text-[16px] text-white bg-brand capitalize font-epilogue font-bold cursor-pointer'>sign up</button>
