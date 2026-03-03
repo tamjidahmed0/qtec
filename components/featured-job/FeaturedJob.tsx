@@ -79,7 +79,21 @@ const FeaturedJob = () => {
 
             <div className='flex justify-between items-center'>
                 <p className='font-clash-display font-bold text-[48px]'>Featured <span className='text-accents-blue'>jobs</span></p>
-                <button className='cursor-pointer text-[#4640DE] font-epilogue text-[16px] font-bold'>Show all jobs</button>
+                {/* <button className='cursor-pointer text-[#4640DE] font-epilogue text-[16px] font-bold'>Show all jobs</button> */}
+
+
+                <button className='cursor-pointer text-[#4640DE] font-epilogue text-[16px] font-bold flex items-center gap-2'>
+                    Show all jobs
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
             </div>
 
 
