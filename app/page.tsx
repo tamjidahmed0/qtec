@@ -14,9 +14,7 @@ export default function Home() {
       <Category />
       <Promo />
       <FeaturedJob />
-      <LatestJob />
-      
-
+      <LatestJob /> 
     </div>
   );
 }

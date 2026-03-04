@@ -64,17 +64,15 @@ const LatestJob = () => {
 
 
     return (
-        <div className=' bg-light-gray relative'
-            style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 99%, 0 11%)' }}
-        >
+        <div className=' bg-light-gray relative lg:[clip-path:polygon(15%_0,100%_0,100%_100%,0_99%,0_11%)]'>
 
 
-            <div className='max-w-360 mx-auto px-31 mt-20 pb-15 relative z-10'>
+            <div className='lg:max-w-360 lg:mx-auto px-4 lg:px-31 mt-20 pb-15 relative z-10'>
                 <div className='pt-18'>
                     <div className='flex justify-between items-center'>
-                        <p className='font-clash-display font-bold text-[48px]'>Latest <span className='text-accents-blue'>jobs open</span></p>
+                        <p className='font-clash-display font-bold lg:text-[48px] text-[32px]'>Latest <span className='text-accents-blue'>jobs open</span></p>
 
-                        <button className='cursor-pointer text-[#4640DE] font-epilogue text-[16px] font-bold flex items-center gap-2'>
+                        <button className='hidden cursor-pointer text-[#4640DE] font-epilogue text-[16px] font-bold lg:flex items-center gap-2'>
                             Show all jobs
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -90,10 +88,10 @@ const LatestJob = () => {
 
 
 
-                    <div className='grid grid-cols-2 mt-12 gap-x-8 gap-y-4'>
+                    <div className='grid lg:grid-cols-2 mt-12 gap-x-8 gap-y-4'>
 
                         {cards.map((item, index) => (
-                            <div className='flex gap-6 bg-white px-10 py-6 cursor-pointer' key={index}>
+                            <div className='flex lg:flex-row flex-col gap-6 bg-white px-10 py-6 cursor-pointer' key={index}>
                                 <div className='w-16 h-16 shrink-0'>
                                     <Image
                                         src={item.icon}
@@ -146,10 +144,13 @@ const LatestJob = () => {
 
 
             {/* Decorative rectangles */}
-            <div className='pointer-events-none absolute top-20 -left-24 w-96 h-48 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-40 z-0' />
-            <div className='pointer-events-none absolute top-40 right-10 w-105 h-45 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-30 z-0' />
-            <div className='pointer-events-none absolute bottom-20 -left-16 w-95 h-37.5 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-40 z-0' />
-            <div className='pointer-events-none absolute bottom-10 right-32 w-[320px] h-35 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-30 z-0' />
+            <div className='hidden lg:block'>
+                <div className='pointer-events-none absolute top-20 -left-24 w-96 h-48 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-40 z-0' />
+                <div className='pointer-events-none absolute top-40 right-10 w-105 h-45 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-30 z-0' />
+                <div className='pointer-events-none absolute bottom-20 -left-16 w-95 h-37.5 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-40 z-0' />
+                <div className='pointer-events-none absolute bottom-10 right-32 w-[320px] h-35 border-2 border-[#C8C4E9] rotate-[-25deg] opacity-30 z-0' />
+            </div>
+
 
         </div>
     )

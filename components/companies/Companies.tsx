@@ -7,16 +7,36 @@ import talkit from '@/public/assets/talkit.png'
 
 const Companies = () => {
     return (
-        <div className='px-31 max-w-360 mx-auto'>
-            <p className='font-epilogue text-[18px] font-light text-[#202430] opacity-50 mt-12'>Companies we helped grow</p>
+        <div className='px-4 sm:px-10 lg:px-31 max-w-360 mx-auto overflow-hidden'>
+            
+            <p className='
+                font-epilogue 
+                text-[16px] sm:text-[18px] 
+                font-light 
+                text-[#202430] 
+                opacity-50 
+                mt-10 lg:mt-12
+            '>
+                Companies we helped grow
+            </p>
 
-            <div className='flex justify-between items-center mt-8'>
-                <Image src={vodafone} alt='' />
-                <Image src={intel} alt='' />
-                <Image src={tesla} alt='' />
-                <Image src={amd} alt='' />
-                <Image src={talkit} alt='' />
+            <div className='
+                grid 
+                grid-cols-2 
+                md:grid-cols-3 
+                lg:grid-cols-5
+                gap-y-8 
+                gap-x-6
+                
+                mt-8
+            '>
+                <Image src={vodafone} alt='vodafone' className='' />
+                <Image src={intel} alt='intel' className='' />
+                <Image src={tesla} alt='tesla' className='' />
+                <Image src={amd} alt='amd' className='' />
+                <Image src={talkit} alt='talkit' className='' />
             </div>
+
         </div>
     )
 }
