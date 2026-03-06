@@ -3,21 +3,23 @@ import { useState, useRef } from 'react'
 import {
   Layout, Menu, Table, Button, Modal, Form, Input, Select,
   Tag, Avatar, Card, Typography, Space, Popconfirm,
-  Badge, Tooltip, message, Drawer, Grid, Spin
+  Badge, Tooltip, message, Drawer, Grid
 } from 'antd'
 import {
-  PlusOutlined, DeleteOutlined, FileTextOutlined,
+  PlusOutlined, DeleteOutlined,
   BankOutlined, EnvironmentOutlined, MenuOutlined,
-  CalendarOutlined, LinkOutlined, TeamOutlined,
-  SolutionOutlined, BarChartOutlined, CheckCircleOutlined,
-  AppstoreOutlined, CameraOutlined, CloseCircleOutlined
+  CalendarOutlined,
+  SolutionOutlined, BarChartOutlined,
+  AppstoreOutlined, CameraOutlined, CloseCircleOutlined, LogoutOutlined
 } from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table'
 import type { BadgeProps } from 'antd'
 import { useCreateJob } from '@/hooks/useCreateJob'
 import useAdminJobs from '@/hooks/useAdminJob'
 import useDeleteJob from '@/hooks/useDeleteJobs'
-import { Job, Application } from '@/types/types'
+import { Job } from '@/types/types'
+import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 const { Sider, Header, Content } = Layout
 const { Title, Text } = Typography
@@ -26,8 +28,6 @@ const { useBreakpoint } = Grid
 const CATEGORIES = ['Design', 'Marketing', 'Engineering', 'Sales', 'Finance', 'HR', 'Other']
 const LOCATIONS = ['Remote', 'Dhaka, Bangladesh', 'New York, USA', 'London, UK', 'Berlin, Germany']
 const JOB_TYPES = ['Full Time', 'Part Time', 'Contract', 'Internship']
-
-
 
 const TYPE_COLOR: Record<string, BadgeProps['status']> = {
   'Full Time': 'success',
@@ -108,8 +108,8 @@ function CompanyLogoUpload({ value, onChange }: LogoUploadProps) {
 export default function AdminDashboard() {
   const { mutate, isPending } = useCreateJob()
   const { data, isLoading } = useAdminJobs()
-  const { mutate: deleteJob, isPending: isDeleting } = useDeleteJob()
-
+  const { mutate: deleteJob } = useDeleteJob()
+  const router = useRouter()
 
   const [activeTab, setActiveTab] = useState<string>('jobs')
   const [showForm, setShowForm] = useState<boolean>(false)
@@ -119,6 +119,11 @@ export default function AdminDashboard() {
   const screens = useBreakpoint()
 
   const jobs: Job[] = data?.jobs ?? []
+
+  const handleLogout = () => {
+    Cookies.remove('token')
+    router.push('/dashboard/login')
+  }
 
   const handleSubmit = async () => {
     try {
@@ -152,8 +157,10 @@ export default function AdminDashboard() {
   }
 
   const handleDelete = (id: string) => {
-    messageApi.success('Job deleted successfully')
-    deleteJob({ id })
+    deleteJob({ id }, {
+      onSuccess: () => messageApi.success('Job deleted successfully'),
+      onError: () => messageApi.error('Failed to delete job'),
+    })
   }
 
   const menuItems = [
@@ -193,9 +200,9 @@ export default function AdminDashboard() {
       responsive: ['sm'],
       render: (company: string, record: Job) => (
         <Space>
-          {record.company_logo ? (
+          {record.image ? (
             <div style={{ width: 30, height: 30, borderRadius: 8, border: '1.5px solid #E8EAF0', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
-              <img src={record.company_logo} alt={company} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <img src={record.image} alt={company} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
           ) : (
             <Avatar size={30} style={{ backgroundColor: AVATAR_COLORS[company.charCodeAt(0) % AVATAR_COLORS.length], fontSize: 12, fontWeight: 700, flexShrink: 0 }}>
@@ -269,18 +276,30 @@ export default function AdminDashboard() {
           </div>
         </div>
       </div>
+
       <Menu theme="dark" mode="inline" selectedKeys={[activeTab]}
         onClick={({ key }) => { setActiveTab(key); setMobileDrawer(false) }}
         items={menuItems}
         style={{ background: 'transparent', border: 'none', flex: 1, paddingTop: 12 }} />
+
       <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-        <Space>
-          <Avatar size={34} style={{ background: 'linear-gradient(135deg, #4640DE, #DB2777)', fontWeight: 700 }}>A</Avatar>
-          <div>
-            <div style={{ color: 'white', fontSize: 13, fontWeight: 600, lineHeight: 1.2 }}>Admin</div>
-            <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 11 }}>admin@quickhire.com</div>
-          </div>
-        </Space>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Space>
+            <Avatar size={34} style={{ background: 'linear-gradient(135deg, #4640DE, #DB2777)', fontWeight: 700 }}>A</Avatar>
+            <div>
+              <div style={{ color: 'white', fontSize: 13, fontWeight: 600, lineHeight: 1.2 }}>Admin</div>
+              <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 11 }}>admin@quickhire.com</div>
+            </div>
+          </Space>
+          <Tooltip title="Logout">
+            <Button
+              type="text"
+              onClick={handleLogout}
+              icon={<LogoutOutlined style={{ fontSize: 16 }} />}
+              style={{ color: 'rgba(255,255,255,0.4)', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            />
+          </Tooltip>
+        </div>
       </div>
     </div>
   )

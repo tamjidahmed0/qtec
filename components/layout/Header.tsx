@@ -9,7 +9,7 @@ const Header = () => {
     const [open, setOpen] = useState(false)
 
     return (
-        <div className='bg-light-gray relative'>
+        <div className='bg-light-gray sticky top-0 z-50'>
             <div className='h-19.5 max-w-360 mx-auto 
                 px-6 sm:px-10 lg:px-31 
                 flex items-center justify-between'>
