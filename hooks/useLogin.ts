@@ -15,7 +15,12 @@ export const useLogin = () => {
     return useMutation({
         mutationFn: (data: LoginData) => loginAdmin(data),
         onSuccess: (data) => {
-          Cookies.set('token', data.token, { expires: 2 / 24 })
+            Cookies.set('token', data.token, {
+                expires: 2 / 24,   // 2 hours
+                secure: true,      // must on HTTPS
+                sameSite: 'lax',   // avoid cross-site blocking
+                path: '/'          // accessible everywhere
+            })
             console.log("Login success")
         },
         onError: (error: any) => {
