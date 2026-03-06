@@ -15,11 +15,8 @@ export const useLogin = () => {
     return useMutation({
         mutationFn: (data: LoginData) => loginAdmin(data),
         onSuccess: (data) => {
-            Cookies.set('token', data.token, {
-                expires: 2 / 24,
-                secure: true,
-                sameSite: 'None',
-            })
+          Cookies.set('token', data.token, { expires: 2 / 24 })
+            console.log("Login success")
         },
         onError: (error: any) => {
             console.error(error.message)
