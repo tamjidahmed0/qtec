@@ -16,11 +16,13 @@ const Header = () => {
 
                 {/* Left Section */}
                 <div className='flex items-center gap-6 lg:gap-12'>
-                    <Image 
-                        src={logo} 
-                        alt='logo' 
-                        className='lg:w-38 h-auto' 
-                    />
+                    <Link href={'http://localhost:3000'}>
+                        <Image
+                            src={logo}
+                            alt='logo'
+                            className='lg:w-38 h-auto'
+                        />
+                    </Link>
 
                     {/* Desktop Nav */}
                     <div className='hidden md:flex capitalize items-center gap-4  
@@ -36,7 +38,7 @@ const Header = () => {
                         Login
                     </button>
 
-                    <div className='w-12 h-0 border border-[#D6DDEB] rotate-90'/>
+                    <div className='w-12 h-0 border border-[#D6DDEB] rotate-90' />
 
                     <button className='px-6 py-3 text-[16px] text-white bg-brand capitalize font-epilogue font-bold cursor-pointer'>
                         sign up
@@ -44,7 +46,7 @@ const Header = () => {
                 </div>
 
                 {/* Mobile Hamburger */}
-                <button 
+                <button
                     onClick={() => setOpen(!open)}
                     className='md:hidden flex flex-col gap-1.5'
                 >
@@ -57,7 +59,7 @@ const Header = () => {
             {/* Mobile Menu */}
             {open && (
                 <div className='md:hidden absolute top-full left-0 w-full bg-white shadow-md px-6 py-6 flex flex-col gap-4 z-50'>
-                    
+
                     <Link href={'/'} onClick={() => setOpen(false)}>
                         Find jobs
                     </Link>

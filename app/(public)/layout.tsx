@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Epilogue, } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Header from "@/components/layout/Header";
 import localFont from 'next/font/local';
 import Footer from "@/components/layout/Footer";
-import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,11 +15,11 @@ const epilogue = Epilogue({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-epilogue",
 });
-const clashDisplay = localFont({
+const clashDisplay = localFont({ 
   variable: "--font-clash-display",
   src: [
-    { path: "./fonts/clash-font/ClashDisplay-Semibold.otf", weight: "600", style: "normal" },
-
+    { path: "../fonts/clash-font/ClashDisplay-Semibold.otf", weight: "600", style: "normal" },
+  
 
 
   ]
@@ -46,11 +45,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${epilogue.variable} ${clashDisplay.variable} antialiased`}
       >
+        <Header />
+        {children}
 
-        <Providers>
-          {children}
-        </Providers>
-
+        <Footer />
       </body>
     </html>
   );
