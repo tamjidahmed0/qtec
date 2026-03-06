@@ -26,7 +26,7 @@ export async function proxy(request: NextRequest) {
 
 async function verifyTokenWithServer(token: string, req: NextRequest): Promise<{ success: boolean }> {
     try {
-        const res = await fetch('http://localhost:5000/api/auth/verify', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/verify`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

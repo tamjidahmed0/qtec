@@ -16,7 +16,7 @@ const Header = () => {
 
                 {/* Left Section */}
                 <div className='flex items-center gap-6 lg:gap-12'>
-                    <Link href={'http://localhost:3000'}>
+                    <Link href={'/'}>
                         <Image
                             src={logo}
                             alt='logo'
