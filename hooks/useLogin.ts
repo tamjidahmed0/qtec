@@ -16,12 +16,10 @@ export const useLogin = () => {
         mutationFn: (data: LoginData) => loginAdmin(data),
         onSuccess: (data) => {
             Cookies.set('token', data.token, {
-                expires: 2 / 24,   // 2 hours
-                secure: true,      // must on HTTPS
-                sameSite: 'lax',   // avoid cross-site blocking
-                path: '/'          // accessible everywhere
+                expires: 2 / 24,
+                secure: true,
+                sameSite: 'None',
             })
-            console.log("Login success")
         },
         onError: (error: any) => {
             console.error(error.message)
