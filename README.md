@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuickHire Frontend
+
+Next.js frontend for the QuickHire job board application.
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Library:** Ant Design
+- **Data Fetching:** TanStack Query (React Query)
+- **HTTP:** Fetch API
+- **State:** React useState / useSearchParams
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js v18+
+- Backend server running on `http://localhost:5000`
+
+### Installation
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/tamjidahmed0/qtec.git
+cd quickhire/frontend
+
+# 2. Install dependencies
+npm install
+
+# 3. Setup environment variables
+cp .env.local.example .env.local
+# Edit .env.local with your values
+
+# 4. Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+Create a `.env.local` file:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable                | Description            | Required |
+|-------------------------|------------------------|----------|
+| `NEXT_PUBLIC_API_URL`   | Backend API base URL   | ✅ Yes   |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Route              | Description                        |
+|--------------------|------------------------------------|
+| `/`                | Home — Hero, Featured Jobs, Latest Jobs |
+| `/jobs`            | All job listings with search/filter |
+| `/jobs/:id`        | Job detail page                    |                |
+| `dashboard/login`           | Admin login                        |
+| `/dashboard/admin`       | Admin dashboard — post/delete jobs |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Features
+
+### Public
+- Browse all job listings
+- Search by keyword
+- Filter by location
+- View full job details
+- Submit application (name, email, cover note)
+
+### Admin
+- Login to dashboard
+- Post new job with company logo upload
+- Delete existing jobs
+- View all job listings
+
+
+## Available Scripts
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm start        # Start production server
+npm run lint     # Run ESLint
+```
+
+---
+
