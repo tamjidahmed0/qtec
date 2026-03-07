@@ -22,3 +22,12 @@ export interface Application {
     cover_note: string
     created_at: string
 }
+
+
+export interface ApplyFormValues {
+    job_id: string,
+    name: string
+    resume_link: string
+    cover_note: string
+    email: string
+}
